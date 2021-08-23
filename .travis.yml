@@ -1,7 +1,7 @@
 #codecov.io - токен, после добавления репозитория
 env:
   global:
-    - CODECOV_TOKEN=:e25f476d-d7c3-4a50-9193-3cdbd2e3bce1
+    - CODECOV_TOKEN='e25f476d-d7c3-4a50-9193-3cdbd2e3bce1'
 
 # используем язык java. Travis CI поддерживает другие языки тоже.
 language: java
