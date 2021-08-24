@@ -15,7 +15,7 @@ import static org.quartz.SimpleScheduleBuilder.*;
 
 public class AlertRabbit {
 
-    private Map<String, String> rabbitProps = new HashMap<>();
+    private final Map<String, String> rabbitProps = new HashMap<>();
 
     private int getIntervalProperties() {
         rabbitProperties();
