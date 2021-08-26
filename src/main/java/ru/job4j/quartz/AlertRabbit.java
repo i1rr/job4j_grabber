@@ -35,7 +35,7 @@ public class AlertRabbit {
         }
     }
 
-    private boolean isInt(String str) {
+    public boolean isInt(String str) {
         try {
             @SuppressWarnings("unused")
             int x = Integer.parseInt(str);
