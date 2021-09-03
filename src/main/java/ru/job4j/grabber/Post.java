@@ -8,4 +8,65 @@ public class Post {
     private String link;
     private String description;
     private LocalDateTime created;
+    private LocalDateTime updated;
+
+    public LocalDateTime getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(LocalDateTime updated) {
+        this.updated = updated;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +  System.lineSeparator()
+                + "id=" + id + System.lineSeparator()
+                + "link=" + link + System.lineSeparator()
+                + "title=" + title + System.lineSeparator()
+                + "description=" + description + System.lineSeparator()
+                + "created=" + created  + System.lineSeparator()
+                + "updated=" + updated + System.lineSeparator()
+                + '}';
+    }
 }
