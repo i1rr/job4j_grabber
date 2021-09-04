@@ -51,7 +51,6 @@ public class SqlRuParse implements Parse {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(post);
         return post;
     }
 
@@ -75,10 +74,5 @@ public class SqlRuParse implements Parse {
             e.printStackTrace();
         }
         return list;
-    }
-
-    public static void main(String[] args) {
-        SqlRuParse as = new SqlRuParse(new SqlRuDateTimeParser());
-        System.out.println(as.list("https://www.sql.ru/forum/job-offers"));
     }
 }
