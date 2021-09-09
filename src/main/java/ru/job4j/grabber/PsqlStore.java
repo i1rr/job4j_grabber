@@ -15,7 +15,7 @@ public class PsqlStore implements Store, AutoCloseable {
             Class.forName(cfg.getProperty("driver-class-name"));
 
             cnn = DriverManager.getConnection(
-                    cfg.getProperty("urlRabbit"),
+                    cfg.getProperty("url"),
                     cfg.getProperty("username"),
                     cfg.getProperty("password")
             );
@@ -28,7 +28,7 @@ public class PsqlStore implements Store, AutoCloseable {
         Properties props = new Properties();
         try {
             InputStream in = PsqlStore.class.getClassLoader()
-                    .getResourceAsStream("rabbit.properties");
+                    .getResourceAsStream("app.properties");
             props.load(in);
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +38,6 @@ public class PsqlStore implements Store, AutoCloseable {
 
     @Override
     public void save(Post post) {
-        try (cnn) {
             try (PreparedStatement ps = cnn.prepareStatement(
                         "insert into post (name, text, link, created) values (?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS)) {
@@ -53,7 +52,6 @@ public class PsqlStore implements Store, AutoCloseable {
                         post.setId(genKeys.getInt(1));
                     }
                 }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +60,6 @@ public class PsqlStore implements Store, AutoCloseable {
     @Override
     public List<Post> getAll() {
         List<Post> rsl = new ArrayList<>();
-        try (cnn) {
             try (PreparedStatement ps = cnn.prepareStatement(
                     "SELECT * FROM post")) {
                 try (ResultSet resultSet = ps.executeQuery()) {
@@ -75,7 +72,6 @@ public class PsqlStore implements Store, AutoCloseable {
                         rsl.add(post);
                     }
                 }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,20 +80,20 @@ public class PsqlStore implements Store, AutoCloseable {
 
     @Override
     public Post findById(int id) {
-        Post rsl = new Post();
-        try (cnn) {
+        Post rsl = null;
             try (PreparedStatement ps = cnn.prepareStatement(
                     "select * from post where id = ?")) {
                 ps.setInt(1, id);
                 try (ResultSet resultSet = ps.executeQuery()) {
-                    while (resultSet.next()) {
+                    if (resultSet.next()) {
+                        rsl = new Post();
                         rsl.setId(resultSet.getInt("id"));
                         rsl.setLink(resultSet.getString("link"));
                         rsl.setTitle(resultSet.getString("name"));
                         rsl.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
                     }
                 }
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,7 +7,6 @@ import org.jsoup.select.Elements;
 import ru.job4j.grabber.Parse;
 import ru.job4j.grabber.Post;
 import ru.job4j.grabber.utils.DateTimeParser;
-import ru.job4j.grabber.utils.SqlRuDateTimeParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public class SqlRuParse implements Parse {
         List<Post> list = new ArrayList<>();
         try {
             int limiter = 0; //to ignore first 3 topics as they are not the part of the task
-            for (int i = 1; i < 6; i++) { //to go through the pages (i < 6 means up to 5th page)
+            for (int i = 1; i < 2; i++) { //to go through the pages (i < 6 means up to 5th page)
                 Document doc = Jsoup.connect(link + "/" + i).get();
                 Elements row = doc.select(".postslisttopic");
                 for (Element td : row) {
