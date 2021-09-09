@@ -61,14 +61,17 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +  System.lineSeparator()
-                + "id=" + id + System.lineSeparator()
-                + "link=" + link + System.lineSeparator()
-                + "title=" + title + System.lineSeparator()
-                + "description=" + description + System.lineSeparator()
-                + "created=" + created  + System.lineSeparator()
-                + "updated=" + updated + System.lineSeparator()
-                + '}';
+        return  "----------"
+                + System.lineSeparator()
+                + title + System.lineSeparator()
+                + link + System.lineSeparator()
+                + "***" + System.lineSeparator()
+                + description + System.lineSeparator()
+                + "***" + System.lineSeparator()
+                + created  + System.lineSeparator()
+                + "----------"
+                + System.lineSeparator()
+                + System.lineSeparator();
     }
 
     @Override
