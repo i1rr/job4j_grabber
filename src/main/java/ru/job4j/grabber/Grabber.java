@@ -11,7 +11,6 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Properties;
 
@@ -52,7 +51,6 @@ public class Grabber implements Grab {
 
                             out.write(post.toString().getBytes(Charset.forName("Windows-1251")));
                             out.write(System.lineSeparator().getBytes());
-                            System.out.println(post);
                         }
                     } catch (IOException io) {
                         io.printStackTrace();
@@ -91,7 +89,6 @@ public class Grabber implements Grab {
             Parse parse = (Parse) map.get("parse");
             List<Post> list = parse.list("https://www.sql.ru/forum/job-offers");
             list.forEach(store::save);
-            System.out.println("Checkpoint is reached");
         }
     }
 

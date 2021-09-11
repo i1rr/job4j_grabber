@@ -9,15 +9,6 @@ public class Post {
     private String link;
     private String description;
     private LocalDateTime created;
-    private LocalDateTime updated;
-
-    public LocalDateTime getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(LocalDateTime updated) {
-        this.updated = updated;
-    }
 
     public int getId() {
         return id;
@@ -85,12 +76,11 @@ public class Post {
         Post post = (Post) o;
         return id == post.id && Objects.equals(title, post.title)
                 && Objects.equals(link, post.link)
-                && Objects.equals(created, post.created)
-                && Objects.equals(updated, post.updated);
+                && Objects.equals(created, post.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, link, created, updated);
+        return Objects.hash(id, title, link, created);
     }
 }

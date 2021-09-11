@@ -33,20 +33,14 @@ public class SqlRuParse implements Parse {
             post.setLink(link);
 
             //Post created
-            Element crtd = doc.select(".msgFooter").first();
-            post.setCreated(dateTimeParser.parse(crtd.text().trim().split(" \\[")[0]));
+            Element crtd = doc.select("div#content-wrapper-forum").first();
+            String comment = String.valueOf(crtd.childNode(3));
+            post.setCreated(dateTimeParser.parse(comment.trim().split("Последнее сообщение: ")[1]
+                    .split("</div>")[0]));
 
-            //Post description + update time(if exist)
+            //Post description
             Element desc = doc.select(".msgBody").get(1);
-            String description = desc.text();
-            if (description.contains("Сообщение было отредактировано:")) {
-                String[] temp = description.trim().split("Сообщение было отредактировано: ");
-                post.setDescription(temp[0]);
-                post.setUpdated(dateTimeParser.parse(temp[1]));
-            } else {
-                post.setDescription(description);
-                post.setUpdated(post.getCreated());
-            }
+            post.setDescription(desc.text());
         } catch (IOException e) {
             e.printStackTrace();
         }
